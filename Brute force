@@ -1,0 +1,23 @@
+import random
+import pyautogui
+import time
+
+character = "0123456789"
+character_list = list(character)
+
+password = pyautogui.password("Enter Password here:")
+
+start_time = time.time()
+
+guess_password = ''
+while guess_password != password:
+    guess_password = random.choices(character_list, k=len(password))
+
+    print(">>>>>>" + str(guess_password) + "<<<<<<")
+
+    if guess_password == list(password):
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        print("Your Password is: " + "".join(guess_password))
+        print(f"Time taken: {elapsed_time} Seconds")
+        break
