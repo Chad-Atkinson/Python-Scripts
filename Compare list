@@ -1,0 +1,27 @@
+import pandas as pd
+
+# List of names to search for
+SD_list = ["Add names here"]
+
+# Load the CSV file into a DataFrame
+df = pd.read_csv(
+    r"add CSV here "
+)
+
+# Initialize an empty list to keep track of names not found
+names_not_found = []
+
+# Search for each name 
+# Make sure your CSV has a first name collumn 
+for name in SD_list:
+    results = df[df["FirstName"].str.contains(name, na=False, case=False)]
+    if results.empty:
+        names_not_found.append(name)
+
+# Print the names not found in the CSV file
+if names_not_found:
+    print("Names not found in the CSV file:")
+    for name in set(names_not_found):  # Use 'set' to remove any duplicates
+        print(name)
+else:
+    print("All names were found in the CSV file.")
